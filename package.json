@@ -8,7 +8,10 @@
 		"serverstart": "DEBUG=library-app:* npm run devstart"
 	},
 	"dependencies": {
+		"async": "^3.2.2",
+		"constantinople": "^4.0.1",
 		"cookie-parser": "~1.4.4",
+		"date-fns": "^2.25.0",
 		"debug": "~2.6.9",
 		"dotenv": "^10.0.0",
 		"express": "~4.16.1",
