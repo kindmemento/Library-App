@@ -14,7 +14,7 @@ block content
                 else 
                     span.text-warning  #{val.status} 
                 if val.status!='Available'
-                    span (Due: #{format(val.due_back, 'PPP')})
+                    span (Due: #{val.due_date})
 
         else 
-            li There are no book cpies in this library.
+            li There are no book copies in this library.
