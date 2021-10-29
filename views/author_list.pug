@@ -6,7 +6,7 @@ block content
     ul 
         each author in author_list 
             li 
-                a(href=author.url style='text-decoration:none') #{author.name}
+                a(href=author.url) #{author.name}
                 |   (#{author.lifespan})
 
         else 
