@@ -126,7 +126,7 @@ exports.author_delete_get = (req, res, next) => {
 			res.render('author_delete', {
 				title: 'Delete Author',
 				author: results.author,
-				author_books: results.author_books
+				author_books: results.authors_books
 			})
 		}
 	)
