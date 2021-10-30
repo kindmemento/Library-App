@@ -67,8 +67,7 @@ exports.genre_create_post = [
 			})
 			return
 		} else {
-			Genre.findOne({ name: req.body.name })
-				.exec((err, found_genre) => {
+			Genre.findOne({ name: req.body.name }).exec((err, found_genre) => {
 				if (err) {
 					return next(err)
 				}
@@ -89,8 +88,30 @@ exports.genre_create_post = [
 ]
 
 //Display Genre delete form on GET.
-exports.genre_delete_get = (req, res) => {
-	res.send('NOT IMPLEMENTED: Genre delete GET')
+exports.genre_delete_get = (req, res, next) => {
+	async.parallel(
+		{
+			genre: (callback) => {
+				Genre.findById(req.params.id).exec(callback)
+			},
+			books_in_genre: (callback) => {
+				Book.find({ genre: req.params.id }).exec(callback)
+			}
+		},
+		(err, results) => {
+			if (err) {
+				return next(err)
+			}
+			if (results.genre === null) {
+				res.redirect('/catalog/genres')
+			}
+			res.render('genre_delete', {
+				title: 'Delete Genre',
+				genre: results.genre,
+				books_in_genre: results.books_in_genre
+			})
+		}
+	)
 }
 
 //Handle Genre delete on POST.
