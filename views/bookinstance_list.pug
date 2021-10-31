@@ -13,8 +13,10 @@ block content
                     span.text-danger  #{val.status} 
                 else 
                     span.text-warning  #{val.status} 
-                if val.status!='Available'
+                if val.status!='Available' && val.status!='Loaned'
                     span (Due: #{val.due_date})
+                if val.status==='Loaned'
+                    span (Back: #{val.due_date})
 
         else 
             li There are no book copies in this library.
